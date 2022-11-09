@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.shplib.commands.CommandScheduler;
@@ -11,6 +12,9 @@ import org.firstinspires.ftc.teamcode.subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.DriveSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.ScoopSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.VisionSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.ClawSubsystem;
+
+
 
 /**
  * Template created by Ayaan Govil on 8/21/2021.
@@ -31,10 +35,11 @@ public class BaseRobot extends OpMode {
     public VisionSubsystem vision;
     public ArmSubsystem arm;
     public ScoopSubsystem scoop;
+    public ClawSubsystem claw;
 
     public SHPMotor intake;
 
-    public CRServo claw;
+    //public Servo claw;
 
     public double previousTime = 0;
 
@@ -48,13 +53,15 @@ public class BaseRobot extends OpMode {
         CommandScheduler.getInstance().setTelemetry(telemetry);
 
         // Initialize your subsystems and devices
-//        drive = new DriveSubsystem(hardwareMap);
-        vision = new VisionSubsystem(hardwareMap);
-//        arm = new ArmSubsystem(hardwareMap);
+
+        drive = new DriveSubsystem(hardwareMap);
+        //vision = new VisionSubsystem(hardwareMap);
+        arm = new ArmSubsystem(hardwareMap);
+        claw = new ClawSubsystem(hardwareMap);
 //        scoop = new ScoopSubsystem(hardwareMap);
 //        intake = new SHPMotor(hardwareMap, "intake");
 
-        claw = hardwareMap.get(CRServo.class, "claw");
+        //claw = hardwareMap.get(Servo.class, "claw");
     }
 
     // Called when you press the start button
