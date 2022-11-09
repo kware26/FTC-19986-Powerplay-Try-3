@@ -31,8 +31,8 @@ public class DriveSubsystem extends Subsystem {
                 leftX
         ).rotated(-imu.getYaw());
 
-        drive.mecanum(vector.getX(), vector.getY(), rightX); // field oriented
-//        drive.mecanum(leftY, leftX, rightX); // robot oriented
+        //drive.mecanum(vector.getX(), vector.getY(), rightX); // field oriented
+        drive.mecanum(leftY, leftX, rightX); // robot oriented
     }
 
     @Override
