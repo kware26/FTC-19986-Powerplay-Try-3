@@ -10,6 +10,7 @@ public class MoveArmCommand extends Command {
     private double startTime;
 
     public enum Direction {
+        //up and down relates to actuator
         UP, DOWN, TOP, BOTTOM, MIDDLE
     }
 
@@ -33,6 +34,6 @@ public class MoveArmCommand extends Command {
 
     @Override
     public boolean isFinished() {
-        return arm.atSetpoint() && Clock.hasElapsed(startTime, 0.5);
+        return arm.atSetpoint() && Clock.hasElapsed(startTime, 0.1);
     }
 }
