@@ -24,6 +24,7 @@ public class FindAprilTagCommand extends Command {
     }
 
     @Override
+    //vision.getTags[0]
     public boolean isFinished() {
         return vision.detectedTags() || Clock.hasElapsed(startTime, 5);
     }
