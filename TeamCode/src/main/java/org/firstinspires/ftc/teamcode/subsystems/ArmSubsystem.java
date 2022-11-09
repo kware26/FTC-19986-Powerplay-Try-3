@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.shplib.utility.Clock;
 
 public class ArmSubsystem extends Subsystem {
     public final SHPMotor slide;
-    public final SHPMotor actuator;
+    //public final SHPMotor actuator;
 
     public enum State {
         TOP,
@@ -29,20 +29,22 @@ public class ArmSubsystem extends Subsystem {
     private double previousTime;
 
     public ArmSubsystem(HardwareMap hardwareMap) {
-        slide = new SHPMotor(hardwareMap, Constants.Arm.kSlideName, MotorUnit.ROTATIONS);
+        slide = new SHPMotor(hardwareMap, Constants.Arm.kSlideName, MotorUnit.TICKS);
         slide.enablePositionPID(Constants.Arm.kSlideP);
         slide.setPositionErrorTolerance(Constants.Arm.kSlideTolerance);
 //        slide.enableVelocityPID(Constants.Arm.kSlideP);
 //        slide.enableProfiling(Constants.Arm.kSlideMaxVelocity);
 
 
-        actuator = new SHPMotor(hardwareMap, Constants.Arm.kActuatorName);
-        actuator.enablePositionPID(Constants.Arm.kActuatorP);
-        actuator.setPositionErrorTolerance(Constants.Arm.kActuatorTolerance);
+//        actuator = new SHPMotor(hardwareMap, Constants.Arm.kActuatorName);
+//        actuator.enablePositionPID(Constants.Arm.kActuatorP);
+//        actuator.setPositionErrorTolerance(Constants.Arm.kActuatorTolerance);
 
         previousTime = Clock.now();
         setState(State.BOTTOM);
     }
+
+    public void resetEncoder() {slide.resetEncoder();}
 
     public void setState(State state) {
         this.state = state;
@@ -67,8 +69,7 @@ public class ArmSubsystem extends Subsystem {
     }
 
     public boolean atSetpoint() {
-        return actuator.atPositionSetpoint();
-    }
+        return slide.atPositionSetpoint();    }
 
     public boolean atBottom() {
         return this.state == State.BOTTOM;
@@ -76,26 +77,29 @@ public class ArmSubsystem extends Subsystem {
 
     @Override
     public void periodic(Telemetry telemetry) {
-        telemetry.addData("slide rotations: ", slide.getPosition(MotorUnit.ROTATIONS));
-        telemetry.addData("actuator enc: ", actuator.getPosition(MotorUnit.TICKS));
-        telemetry.addData("arm at setpoint: ", atSetpoint() ? "true" : "false");
+        telemetry.addData("slide encoder: ", slide.getPosition(MotorUnit.TICKS));
+//        telemetry.addData("actuator enc: ", actuator.getPosition(MotorUnit.TICKS));
+//        telemetry.addData("arm at setpoint: ", atSetpoint() ? "true" : "false");
         telemetry.addData("time: ", Clock.elapsed(previousTime));
 //        telemetry.addData("profile output: ", slide.followProfile(Clock.elapsed(previousTime)));
 
         switch (state) {
             case TOP:
+//                telemetry.addData("curr position", slide.getPosition(MotorUnit.TICKS));
                 slide.setPosition(Constants.Arm.kSlideTop);
-                actuator.setPosition(Constants.Arm.kActuatorTop);
+//                actuator.setPosition(Constants.Arm.kActuatorTop);
                 telemetry.addData("state: ", "TOP");
                 break;
             case MIDDLE:
+//                telemetry.addData("curr position", slide.getPosition(MotorUnit.TICKS));
                 slide.setPosition(Constants.Arm.kSlideMiddle);
-                actuator.setPosition(Constants.Arm.kActuatorMiddle);
+//                actuator.setPosition(Constants.Arm.kActuatorMiddle);
                 telemetry.addData("state: ", "MIDDLE");
                 break;
             case BOTTOM:
+//                telemetry.addData("curr position", slide.getPosition(MotorUnit.TICKS));
                 slide.setPosition(Constants.Arm.kSlideBottom);
-                actuator.setPosition(Constants.Arm.kActuatorBottom);
+//                actuator.setPosition(Constants.Arm.kActuatorBottom);
                 telemetry.addData("state: ", "BOTTOM");
                 break;
         }
