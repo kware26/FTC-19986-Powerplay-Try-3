@@ -22,7 +22,7 @@ public class ClawSubsystem extends Subsystem {
     public ClawSubsystem(HardwareMap hardwareMap) {
         claw = hardwareMap.get(Servo.class, Constants.Claw.kClawName);
 
-        this.state = ClawSubsystem.State.OPEN;
+        this.state = ClawSubsystem.State.CLOSED;
     }
 
     public void setState(State state) {
