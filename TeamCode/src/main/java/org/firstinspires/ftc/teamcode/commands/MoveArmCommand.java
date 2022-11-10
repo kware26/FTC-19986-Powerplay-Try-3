@@ -34,6 +34,6 @@ public class MoveArmCommand extends Command {
 
     @Override
     public boolean isFinished() {
-        return arm.atSetpoint() && Clock.hasElapsed(startTime, 0.1);
+        return Clock.hasElapsed(startTime, 1);
     }
 }
