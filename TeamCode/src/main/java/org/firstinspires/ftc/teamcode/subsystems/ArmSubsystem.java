@@ -32,6 +32,7 @@ public class ArmSubsystem extends Subsystem {
         slide = new SHPMotor(hardwareMap, Constants.Arm.kSlideName, MotorUnit.TICKS);
         slide.enablePositionPID(Constants.Arm.kSlideP);
         slide.setPositionErrorTolerance(Constants.Arm.kSlideTolerance);
+        //slide.reverseDirection();
 //        slide.enableVelocityPID(Constants.Arm.kSlideP);
 //        slide.enableProfiling(Constants.Arm.kSlideMaxVelocity);
 
