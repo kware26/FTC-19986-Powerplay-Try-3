@@ -21,17 +21,18 @@ public class CommandBasedTeleOp extends BaseRobot {
 
 
         // Default command runs when no other commands are scheduled for the subsystem
-        drive.setDefaultCommand(
-                new RunCommand(
-                        () -> drive.mecanum(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x)
-                )
-        );
+//        drive.setDefaultCommand(
+//                new RunCommand(
+//                        () -> drive.mecanum(gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x)
+//                )
+//        );
+        arm.slide.resetEncoder();
     }
 
     @Override
     public void start() {
         super.start();
-        arm.slide.resetEncoder();
+
 
         // Add anything that needs to be run a single time when the OpMode starts
     }
@@ -46,6 +47,9 @@ public class CommandBasedTeleOp extends BaseRobot {
         new Trigger(gamepad1.dpad_right, new TestOpenClawCommand(claw, TestOpenClawCommand.Direction.OPEN));
 //
         new Trigger(gamepad1.dpad_up, new MoveArmCommand(arm, MoveArmCommand.Direction.TOP));
+        new Trigger(gamepad1.b, new MoveArmCommand(arm, MoveArmCommand.Direction.MIDDLE));
+        new Trigger(gamepad1.a, new MoveArmCommand(arm, MoveArmCommand.Direction.BOTTOM));
+
 //        new Trigger(gamepad1.dpad_down, new MoveArmCommand(arm, MoveArmCommand.Direction.BOTTOM));
         //my code end
 
