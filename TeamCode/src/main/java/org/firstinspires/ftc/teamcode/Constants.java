@@ -5,7 +5,7 @@ public final class Constants {
     public static final double kNominalVoltage = 12.0;
 
     // Multiplied by each term before assigning to the controller
-    public static final double kPositionPIDFactor = 1.0;
+    public static final double kPositionPIDFactor = 1.0/10000;
     public static final double kVelocityPIDFactor = 1.0 / 100000.0;
 
     public static final class Drive {
@@ -26,18 +26,18 @@ public final class Constants {
         public static final String kSlideName = "slide";
         public static final String kActuatorName = "actuator";
         //essentially speed-need to change value - too slow
-        public static final double kSlideP = 5;
-        public static final double kSlideTolerance = 0.2;
+        public static final double kSlideP = 35;
+        public static final double kSlideTolerance = 0.1;
         public static final double kSlideMaxVelocity = 1;
 
-        public static final double kActuatorP = 5;
+        public static final double kActuatorP = 8;
         public static final double kActuatorTolerance = 50;
         //check
         //motor is going down
-        public static final double kSlideTop = -100;
+        public static final double kSlideTop = 1000;
         //figure out nums check
-        public static final double kSlideMiddle = -50;
-        public static final double kSlideBottom = 0;
+        public static final double kSlideMiddle = 500;
+        public static final double kSlideBottom = 10;
 
         public static final double kActuatorTop = 2500;
         public static final double kActuatorMiddle = 1000;
