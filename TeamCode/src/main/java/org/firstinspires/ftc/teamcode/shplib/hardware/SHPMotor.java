@@ -309,4 +309,11 @@ public class SHPMotor {
         if (runUsingBuiltInControl) setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         else setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
+
+    public void reverseDirection(){
+        if(getDirection() == DcMotorEx.Direction.FORWARD){
+            setDirection(DcMotorEx.Direction.REVERSE);
+        }
+        else{setDirection(DcMotorEx.Direction.FORWARD);}
+    }
 }
