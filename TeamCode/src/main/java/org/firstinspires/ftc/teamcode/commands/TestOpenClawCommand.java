@@ -40,6 +40,6 @@ public class TestOpenClawCommand extends Command {
     @Override
     public boolean isFinished() {
         //opens claw afterwards
-        return Clock.hasElapsed(startTime, 2);
+        return Clock.hasElapsed(startTime, 0.5);
     }
 }
